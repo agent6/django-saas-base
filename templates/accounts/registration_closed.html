@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}Registration Closed | SaaS Base{% endblock %}
+
+{% block content %}
+<div class="mx-auto max-w-lg rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+  <h1 class="text-xl font-semibold text-slate-900">Registration is closed</h1>
+  <p class="mt-2 text-sm text-slate-600">Please contact an administrator if you need access.</p>
+  <a href="{% url 'login' %}" class="mt-4 inline-flex rounded-md border border-slate-300 px-4 py-2 text-sm text-slate-700">Return to login</a>
+</div>
+{% endblock %}

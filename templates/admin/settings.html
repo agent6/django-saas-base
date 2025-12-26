@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Settings | SaaS Base{% endblock %}
+
+{% block content %}
+<div class="space-y-6">
+  <div>
+    <h1 class="text-2xl font-semibold text-slate-900">Admin settings</h1>
+    <p class="mt-2 text-sm text-slate-600">Manage site settings and email configuration.</p>
+  </div>
+
+  {% include "admin/_nav.html" %}
+
+  <form method="post" class="space-y-6 rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+
+    <div>
+      <h2 class="text-sm font-semibold text-slate-800">Registration</h2>
+      <div class="mt-3 flex items-center gap-3">
+        {{ form.registration_enabled }}
+        <label class="text-sm text-slate-700">Enable public registration</label>
+      </div>
+    </div>
+
+    <div>
+      <h2 class="text-sm font-semibold text-slate-800">Email settings</h2>
+      <p class="mt-1 text-xs text-slate-500">SMTP credentials remain in environment variables.</p>
+      <div class="mt-4 grid gap-4 md:grid-cols-2">
+        <div>
+          <label class="text-sm font-medium text-slate-700">From name</label>
+          {{ form.email_from_name }}
+        </div>
+        <div>
+          <label class="text-sm font-medium text-slate-700">From email</label>
+          {{ form.email_from_email }}
+        </div>
+        <div>
+          <label class="text-sm font-medium text-slate-700">SMTP host</label>
+          {{ form.email_host }}
+        </div>
+        <div>
+          <label class="text-sm font-medium text-slate-700">SMTP port</label>
+          {{ form.email_port }}
+        </div>
+        <div>
+          <label class="text-sm font-medium text-slate-700">SMTP login</label>
+          {{ form.email_host_user }}
+        </div>
+        <div class="flex items-center gap-3">
+          {{ form.email_use_tls }}
+          <label class="text-sm text-slate-700">Use TLS</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex flex-wrap gap-3">
+      <button type="submit" name="action" value="save" class="rounded-md bg-slate-900 px-4 py-2 text-sm text-white">Save settings</button>
+      <button type="submit" name="action" value="test" class="rounded-md border border-slate-300 px-4 py-2 text-sm text-slate-700">Send test email</button>
+    </div>
+  </form>
+</div>
+{% endblock %}

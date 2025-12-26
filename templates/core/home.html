@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Welcome | SaaS Base{% endblock %}
+
+{% block content %}
+<div class="grid gap-8 lg:grid-cols-2 lg:items-center">
+  <div>
+    <h1 class="text-3xl font-semibold text-slate-900">Modern admin-friendly starter</h1>
+    <p class="mt-4 text-slate-600">
+      A Django + HTMX + Tailwind foundation for internal tools and lightweight SaaS dashboards.
+    </p>
+    <div class="mt-6 flex flex-wrap gap-3">
+      {% if user.is_authenticated %}
+        <a href="{% url 'dashboard' %}" class="rounded-md bg-slate-900 px-4 py-2 text-sm text-white">Go to dashboard</a>
+      {% else %}
+        <a href="{% url 'login' %}" class="rounded-md bg-slate-900 px-4 py-2 text-sm text-white">Log in</a>
+        {% if site_settings.registration_enabled %}
+          <a href="{% url 'register' %}" class="rounded-md border border-slate-300 px-4 py-2 text-sm text-slate-700">Create account</a>
+        {% endif %}
+      {% endif %}
+    </div>
+  </div>
+  <div class="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+    <h2 class="text-lg font-semibold text-slate-800">What you get</h2>
+    <ul class="mt-4 space-y-2 text-sm text-slate-600">
+      <li>Custom admin area with user, group, and settings management.</li>
+      <li>HTMX-ready list search and partial updates.</li>
+      <li>Brevo SMTP support with test email actions.</li>
+      <li>Forced password reset for initial admin user.</li>
+    </ul>
+  </div>
+</div>
+{% endblock %}

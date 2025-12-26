@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %}Edit User | SaaS Base{% endblock %}
+
+{% block content %}
+<div class="space-y-6">
+  <div>
+    <h1 class="text-2xl font-semibold text-slate-900">Edit user</h1>
+    <p class="mt-2 text-sm text-slate-600">Manage user details, access, and groups.</p>
+  </div>
+
+  {% include "admin/_nav.html" %}
+
+  <form method="post" class="space-y-6 rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+
+    <div class="grid gap-4 md:grid-cols-2">
+      <div>
+        <label class="text-sm font-medium text-slate-700">Email</label>
+        {{ form.email }}
+        {{ form.email.errors }}
+      </div>
+      <div>
+        <label class="text-sm font-medium text-slate-700">Name</label>
+        {{ form.name }}
+        {{ form.name.errors }}
+      </div>
+    </div>
+
+    <div class="flex flex-wrap gap-6">
+      <label class="flex items-center gap-3 text-sm text-slate-700">
+        {{ form.is_active }}
+        Active
+      </label>
+      <label class="flex items-center gap-3 text-sm text-slate-700">
+        {{ form.is_staff }}
+        Admin access
+      </label>
+      {{ form.is_staff.errors }}
+    </div>
+
+    <div>
+      <h2 class="text-sm font-semibold text-slate-800">Groups</h2>
+      <div class="mt-2 grid gap-2 text-sm text-slate-700">
+        {{ form.groups }}
+      </div>
+    </div>
+
+    <div class="flex flex-wrap gap-3">
+      <button type="submit" class="rounded-md bg-slate-900 px-4 py-2 text-sm text-white">Save</button>
+      <a href="{% url 'admin-users' %}" class="rounded-md border border-slate-300 px-4 py-2 text-sm text-slate-700">Cancel</a>
+    </div>
+  </form>
+
+  <form method="post" action="{% url 'admin-user-reset' user_obj.id %}" class="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+    {% csrf_token %}
+    <h2 class="text-sm font-semibold text-slate-800">Reset password</h2>
+    <p class="mt-2 text-xs text-slate-500">Send a password reset email to this user.</p>
+    <button type="submit" class="mt-4 rounded-md border border-slate-300 px-4 py-2 text-sm text-slate-700">Send reset email</button>
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Login | SaaS Base{% endblock %}
+
+{% block content %}
+<div class="mx-auto max-w-md rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+  <h1 class="text-xl font-semibold text-slate-900">Log in</h1>
+  <p class="mt-2 text-sm text-slate-600">Use your account email and password.</p>
+
+  <form method="post" class="mt-6 space-y-4">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    <div>
+      <label class="text-sm font-medium text-slate-700">Email</label>
+      {{ form.username }}
+      {{ form.username.errors }}
+    </div>
+    <div>
+      <label class="text-sm font-medium text-slate-700">Password</label>
+      {{ form.password }}
+      {{ form.password.errors }}
+    </div>
+    <button type="submit" class="w-full rounded-md bg-slate-900 px-4 py-2 text-sm text-white">Log in</button>
+  </form>
+
+  <div class="mt-4 flex items-center justify-between text-xs text-slate-500">
+    <a href="{% url 'password_reset' %}" class="hover:text-slate-700">Forgot password?</a>
+    {% if site_settings.registration_enabled %}
+      <a href="{% url 'register' %}" class="hover:text-slate-700">Create account</a>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
