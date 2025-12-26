@@ -38,7 +38,7 @@ python backend/manage.py runserver
 
 ## Environment variables
 
-See `.env.example` for the full list. Key values:
+See [.env.example](.env.example) for the full list. Key values:
 
 - `SECRET_KEY`, `DEBUG`, `ALLOWED_HOSTS`
 - `DATABASE_URL`
@@ -56,11 +56,11 @@ See `.env.example` for the full list. Key values:
 
 ## Architecture standards
 
-See `docs/ARCHITECTURE.md` for the non-negotiable engineering standards.
+See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for the non-negotiable engineering standards.
 
 ## Vibe coding workflow
 
-See `docs/VIBE-CODING.md` for the repeatable CODEX CLI workflow to start and ship new projects.
+See [docs/VIBE-CODING.md](docs/VIBE-CODING.md) for the repeatable CODEX CLI workflow to start and ship new projects.
 
 ## Registration toggle
 

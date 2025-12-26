@@ -99,11 +99,7 @@ Write this down **before** prompting CODEX:
 - Is it multi-tenant or single-tenant?
 - Any compliance/security concerns?
 
-Create or update:
-
-```
-docs/PROJECT.md
-```
+Create or update: [docs/PROJECT.md](PROJECT.md)
 
 This document is **the source of truth**.
 CODEX does not decide product scope -- *you do*.
@@ -128,11 +124,7 @@ Document:
 - What each user type can do
 - What they *cannot* do
 
-Add this to:
-
-```
-docs/PROJECT.md
-```
+Add this to: [docs/PROJECT.md](PROJECT.md)
 
 ---
 
@@ -154,11 +146,7 @@ For each Page, define:
 WARNING: **Mandatory Review Rule**
 If AI helps generate this list, **you must read and edit every Page definition before implementing anything**.
 
-Add this to:
-
-```
-docs/PROJECT.md
-```
+Add this to: [docs/PROJECT.md](PROJECT.md)
 
 ---
 
@@ -197,15 +185,11 @@ A task is done when:
 - Feature works as described
 - Access control enforced
 - Errors handled gracefully
-- UX follows the Style Guide
+- UX follows the [StyleGuide.md](../StyleGuide.md)
 - Tests added if appropriate
 - Manual verification completed
 
-Document tasks in:
-
-```
-docs/DEV_TASKS.md
-```
+Document tasks in: [docs/DEV_TASKS.md](DEV_TASKS.md)
 
 ---
 
@@ -357,7 +341,7 @@ At this point:
 
 ### UX
 
-- Follow the Style Guide
+- Follow the [StyleGuide.md](../StyleGuide.md)
 - Mobile-first always
 - Admin UX matters as much as user UX
 
