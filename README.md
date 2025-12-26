@@ -25,6 +25,8 @@ The entrypoint runs migrations and ensures the initial admin user exists. The ap
 
 Note: local development uses `docker-compose.override.yml` to mount the code into the container. For Portainer or production, the base `docker-compose.yml` intentionally avoids host bind mounts.
 
+Production note: the container runs `gunicorn` by default. For local dev, the override uses Django's `runserver`. Static assets are served with WhiteNoise in production.
+
 ## Local setup (without Docker)
 
 ```bash
