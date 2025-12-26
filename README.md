@@ -23,6 +23,8 @@ docker compose up --build
 
 The entrypoint runs migrations and ensures the initial admin user exists. The app is available at `http://localhost:8000` unless you set `HOST_PORT` in `.env`.
 
+Note: local development uses `docker-compose.override.yml` to mount the code into the container. For Portainer or production, the base `docker-compose.yml` intentionally avoids host bind mounts.
+
 ## Local setup (without Docker)
 
 ```bash
