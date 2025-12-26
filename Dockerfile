@@ -12,5 +12,5 @@ COPY . /app/
 
 WORKDIR /app/backend
 
-ENTRYPOINT ["/bin/sh", "-c", "python manage.py migrate && python manage.py ensure_initial_admin && exec \"$@\"", "--"]
+ENTRYPOINT ["/bin/sh", "-c", "mkdir -p /app/staticfiles && python manage.py migrate && python manage.py collectstatic --noinput && python manage.py ensure_initial_admin && exec \"$@\"", "--"]
 CMD ["gunicorn", "config.wsgi:application", "--bind", "0.0.0.0:8000"]
