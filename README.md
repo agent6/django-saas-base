@@ -21,7 +21,7 @@ A production-minded starter for Django + HTMX + Tailwind with a custom admin are
 docker compose up --build
 ```
 
-The entrypoint runs migrations and ensures the initial admin user exists. The app is available at `http://localhost:8000`.
+The entrypoint runs migrations and ensures the initial admin user exists. The app is available at `http://localhost:8000` unless you set `HOST_PORT` in `.env`.
 
 ## Local setup (without Docker)
 
