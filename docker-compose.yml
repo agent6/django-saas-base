@@ -11,7 +11,25 @@ services:
   web:
     build: .
     environment:
-      DATABASE_URL: postgres://postgres:postgres@db:5432/saas_base
+      SECRET_KEY: ${SECRET_KEY}
+      DEBUG: ${DEBUG:-false}
+      ALLOWED_HOSTS: ${ALLOWED_HOSTS:-localhost,127.0.0.1}
+      TIME_ZONE: ${TIME_ZONE:-UTC}
+      DATABASE_URL: ${DATABASE_URL:-postgres://postgres:postgres@db:5432/saas_base}
+      INITIAL_ADMIN_EMAIL: ${INITIAL_ADMIN_EMAIL}
+      INITIAL_ADMIN_PASSWORD: ${INITIAL_ADMIN_PASSWORD}
+      INITIAL_ADMIN_NAME: ${INITIAL_ADMIN_NAME:-Admin}
+      INITIAL_ADMIN_FORCE_PASSWORD_RESET: ${INITIAL_ADMIN_FORCE_PASSWORD_RESET:-true}
+      INITIAL_ADMIN_RESET_PASSWORD: ${INITIAL_ADMIN_RESET_PASSWORD:-false}
+      EMAIL_HOST: ${EMAIL_HOST:-smtp-relay.brevo.com}
+      EMAIL_PORT: ${EMAIL_PORT:-587}
+      EMAIL_HOST_USER: ${EMAIL_HOST_USER}
+      EMAIL_HOST_PASSWORD: ${EMAIL_HOST_PASSWORD}
+      EMAIL_USE_TLS: ${EMAIL_USE_TLS:-true}
+      DEFAULT_FROM_EMAIL: ${DEFAULT_FROM_EMAIL:-no-reply@example.com}
+      CSRF_TRUSTED_ORIGINS: ${CSRF_TRUSTED_ORIGINS:-}
+      SESSION_COOKIE_SECURE: ${SESSION_COOKIE_SECURE:-false}
+      CSRF_COOKIE_SECURE: ${CSRF_COOKIE_SECURE:-false}
     ports:
       - "${HOST_PORT:-8000}:8000"
     depends_on:

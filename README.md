@@ -52,6 +52,8 @@ See [.env.example](.env.example) for the full list. Key values:
 - `EMAIL_HOST`, `EMAIL_PORT`, `EMAIL_HOST_USER`, `EMAIL_HOST_PASSWORD`
 - `DEFAULT_FROM_EMAIL`
 
+Portainer note: define these values in the stack environment variables so they are injected into the container on deploy.
+
 ## Repository hygiene (GitHub-ready)
 
 - `.env` is local-only and must never be committed.
