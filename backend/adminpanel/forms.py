@@ -9,6 +9,13 @@ from core.models import SiteSettings
 
 
 class SiteSettingsForm(forms.ModelForm):
+    email_host_password = forms.CharField(
+        label="SMTP password",
+        required=False,
+        widget=forms.PasswordInput(attrs={"placeholder": "Enter new to change"}, render_value=False),
+        help_text="Managed via environment variable. Enter a value to test without saving.",
+    )
+
     class Meta:
         model = SiteSettings
         fields = [
@@ -30,6 +37,9 @@ class SiteSettingsForm(forms.ModelForm):
         self.fields["email_use_tls"].widget.attrs[
             "class"
         ] = "h-4 w-4 rounded border-slate-300 text-slate-700"
+        self.fields["email_host_password"].widget.attrs[
+            "class"
+        ] = "w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm shadow-sm focus:border-slate-500 focus:outline-none focus:ring-1 focus:ring-slate-500"
         name, email = parseaddr(django_settings.DEFAULT_FROM_EMAIL)
         env_initials = {
             "email_from_name": name or "",

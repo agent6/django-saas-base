@@ -9,8 +9,8 @@ def resolve_from_email(site_settings):
     return from_email
 
 
-def get_email_connection(site_settings):
-    password = settings.EMAIL_HOST_PASSWORD
+def get_email_connection(site_settings, password_override=None):
+    password = password_override or settings.EMAIL_HOST_PASSWORD
     if site_settings.email_host:
         host = site_settings.email_host
         port = site_settings.email_port
@@ -31,7 +31,7 @@ def get_email_connection(site_settings):
     )
 
 
-def send_test_email(site_settings, to_email):
+def send_test_email(site_settings, to_email, password_override=None):
     subject = "Email configuration test"
     body = "This is a test email sent from your Django starter app."
     email = EmailMessage(
@@ -39,6 +39,6 @@ def send_test_email(site_settings, to_email):
         body=body,
         from_email=resolve_from_email(site_settings),
         to=[to_email],
-        connection=get_email_connection(site_settings),
+        connection=get_email_connection(site_settings, password_override=password_override),
     )
     email.send(fail_silently=False)

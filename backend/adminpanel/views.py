@@ -22,13 +22,18 @@ def settings_view(request):
         form = SiteSettingsForm(request.POST, instance=site_settings)
         if form.is_valid():
             site_settings = form.save()
+            password_override = form.cleaned_data.get("email_host_password")
             action = request.POST.get("action", "save")
             if action == "test":
                 if not request.user.email:
                     messages.error(request, "Your account does not have an email address.")
                 else:
                     try:
-                        send_test_email(site_settings, request.user.email)
+                        send_test_email(
+                            site_settings,
+                            request.user.email,
+                            password_override=password_override or None,
+                        )
                         messages.success(request, "Test email sent.")
                     except Exception:
                         messages.error(request, "Test email failed. Check SMTP settings and logs.")

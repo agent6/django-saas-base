@@ -47,6 +47,12 @@
           <label class="text-sm font-medium text-slate-700">SMTP login</label>
           {{ form.email_host_user }}
         </div>
+        <div>
+          <label class="text-sm font-medium text-slate-700">SMTP password</label>
+          {{ form.email_host_password }}
+          {{ form.email_host_password.errors }}
+          <p class="mt-1 text-xs text-slate-500">{{ form.email_host_password.help_text }}</p>
+        </div>
         <div class="flex items-center gap-3">
           {{ form.email_use_tls }}
           <label class="text-sm text-slate-700">Use TLS</label>
