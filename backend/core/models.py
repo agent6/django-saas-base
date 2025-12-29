@@ -8,6 +8,7 @@ class SiteSettings(models.Model):
     email_host = models.CharField(max_length=255, blank=True)
     email_port = models.PositiveIntegerField(default=587)
     email_host_user = models.CharField(max_length=255, blank=True)
+    email_host_password = models.CharField(max_length=255, blank=True)
     email_use_tls = models.BooleanField(default=True)
     updated_at = models.DateTimeField(auto_now=True)
 

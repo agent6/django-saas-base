@@ -89,6 +89,7 @@ AUTH_USER_MODEL = "accounts.User"
 LOGIN_URL = "login"
 LOGIN_REDIRECT_URL = "dashboard"
 LOGOUT_REDIRECT_URL = "home"
+FORCE_PASSWORD_CHANGE_URL_NAME = "force-password-change"
 
 EMAIL_HOST = os.getenv("EMAIL_HOST", "smtp-relay.brevo.com")
 EMAIL_PORT = int(os.getenv("EMAIL_PORT", "587"))

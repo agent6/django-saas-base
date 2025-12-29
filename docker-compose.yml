@@ -7,6 +7,11 @@ services:
       POSTGRES_PASSWORD: postgres
     volumes:
       - db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
   web:
     build: .
@@ -33,7 +38,8 @@ services:
     ports:
       - "${HOST_PORT:-8000}:8000"
     depends_on:
-      - db
+      db:
+        condition: service_healthy
 
 volumes:
   db_data:

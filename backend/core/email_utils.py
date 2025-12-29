@@ -16,6 +16,8 @@ def get_email_connection(site_settings, password_override=None):
         port = site_settings.email_port
         host_user = site_settings.email_host_user or settings.EMAIL_HOST_USER
         use_tls = site_settings.email_use_tls
+        if site_settings.email_host_password:
+            password = password_override or site_settings.email_host_password
     else:
         host = settings.EMAIL_HOST
         port = settings.EMAIL_PORT

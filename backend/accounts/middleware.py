@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.shortcuts import redirect
 from django.urls import resolve
 
@@ -12,10 +13,13 @@ class MustChangePasswordMiddleware:
                 current_view = resolve(request.path_info).view_name
             except Exception:
                 current_view = ""
+
+            force_change_url_name = getattr(settings, "FORCE_PASSWORD_CHANGE_URL_NAME", "force-password-change")
             allowed_views = {
-                "force-password-change",
+                force_change_url_name,
                 "logout",
             }
+
             if current_view not in allowed_views and not request.path_info.startswith("/static/"):
-                return redirect("force-password-change")
+                return redirect(force_change_url_name)
         return self.get_response(request)

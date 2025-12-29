@@ -7,7 +7,7 @@ from django.shortcuts import redirect
 def admin_required(view_func):
     @login_required
     def _wrapped(request, *args, **kwargs):
-        if not request.user.is_staff:
+        if not (request.user.is_active and request.user.is_staff):
             raise PermissionDenied
         return view_func(request, *args, **kwargs)
 
@@ -16,7 +16,7 @@ def admin_required(view_func):
 
 class AdminRequiredMixin(UserPassesTestMixin):
     def test_func(self):
-        return self.request.user.is_staff
+        return self.request.user.is_active and self.request.user.is_staff
 
     def handle_no_permission(self):
         if not self.request.user.is_authenticated:

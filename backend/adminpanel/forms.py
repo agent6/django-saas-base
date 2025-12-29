@@ -13,7 +13,7 @@ class SiteSettingsForm(forms.ModelForm):
         label="SMTP password",
         required=False,
         widget=forms.PasswordInput(attrs={"placeholder": "Enter new to change"}, render_value=False),
-        help_text="Managed via environment variable. Enter a value to test without saving.",
+        help_text="Leave blank to keep unchanged. Overrides environment variable if set.",
     )
 
     class Meta:
@@ -25,6 +25,7 @@ class SiteSettingsForm(forms.ModelForm):
             "email_host",
             "email_port",
             "email_host_user",
+            "email_host_password",
             "email_use_tls",
         ]
 
@@ -40,6 +41,7 @@ class SiteSettingsForm(forms.ModelForm):
         self.fields["email_host_password"].widget.attrs[
             "class"
         ] = "w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm shadow-sm focus:border-slate-500 focus:outline-none focus:ring-1 focus:ring-slate-500"
+        
         name, email = parseaddr(django_settings.DEFAULT_FROM_EMAIL)
         env_initials = {
             "email_from_name": name or "",
@@ -50,7 +52,14 @@ class SiteSettingsForm(forms.ModelForm):
             "email_use_tls": django_settings.EMAIL_USE_TLS,
         }
         for field_name, value in env_initials.items():
-            self.initial[field_name] = value
+            if not getattr(self.instance, field_name):
+                self.initial[field_name] = value
+
+    def clean_email_host_password(self):
+        password = self.cleaned_data.get("email_host_password")
+        if not password:
+            return self.instance.email_host_password
+        return password
 
 
 class GroupForm(forms.ModelForm):
